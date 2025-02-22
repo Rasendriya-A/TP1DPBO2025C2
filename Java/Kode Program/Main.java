@@ -4,9 +4,9 @@ class Main{
     
     public static void main(String args[]) 
     {
-        int n = 0;
-        int jumlahProduk = 0;
-        int menu = 0;
+        int n = 0; // Menyimpan jumlah maksimal produk
+        int jumlahProduk = 0; // Menyimpan jumlah produk yang telah ditambahkan
+        int menu = 0; // Variabel untuk menyimpan pilihan menu dari pengguna
         int i = 0;
         int j = 0;
 
@@ -14,7 +14,7 @@ class Main{
         Scanner sc = new Scanner(System.in);
         try 
         {
-            n = sc.nextInt();
+            n = sc.nextInt(); // Membaca jumlah maksimal produk dari pengguna
         } 
         catch (Exception e) 
         {
@@ -32,6 +32,7 @@ class Main{
         }
 
         do {
+            // Menampilkan menu utama
             System.out.println("+-----------------------------+");
             System.out.println("| Menu:                       |");
             System.out.println("+-----------------------------+");
@@ -43,7 +44,7 @@ class Main{
             System.out.println("| 6. Selesai                  |");
             System.out.println("+-----------------------------+");
             System.out.println("Masukkan pilihan Anda: ");
-            menu = sc.nextInt();
+            menu = sc.nextInt(); // Membaca pilihan pengguna
             
             switch (menu) 
             {
@@ -60,6 +61,7 @@ class Main{
                         i = 0;
                         while (i < jumlahProduk) 
                         {
+                            // Menampilkan informasi setiap produk
                             System.out.println("ID: " + jangki[i].getId() + ", " +
                                                "Kategori: " + jangki[i].getKategoriProduk() + ", " +
                                                "Nama: " + jangki[i].getNamaProduk() + ", " +
@@ -71,7 +73,7 @@ class Main{
                 }
                 case 2: 
                 {
-                    // Menambahkan produk
+                    // Menambahkan produk baru
                     if (jumlahProduk >= n) 
                     {
                         System.out.println("Array penuh. Tidak dapat menambahkan produk baru.");
@@ -110,7 +112,7 @@ class Main{
                         } 
                         else 
                         {
-                            // Menggunakan setter untuk mengisi data
+                            // Menambahkan produk ke dalam array
                             jangki[jumlahProduk].setId(id);
                             jangki[jumlahProduk].setKategoriProduk(kategori);
                             jangki[jumlahProduk].setNamaProduk(nama);
@@ -123,7 +125,7 @@ class Main{
                 }
                 case 3: 
                 {
-                    // Mengubah produk
+                    // Mengubah informasi produk
                     Scanner input = new Scanner(System.in);
                     System.out.print("Masukkan nama produk yang ingin diubah: ");
                     String nama = input.nextLine();
@@ -144,37 +146,25 @@ class Main{
                             switch (pilihan) 
                             {
                                 case 1: 
-                                {
                                     System.out.print("Masukkan ID baru: ");
-                                    String newId = input.nextLine();
-                                    jangki[i].setId(newId);
+                                    jangki[i].setId(input.nextLine());
                                     System.out.println("ID berhasil diubah.");
                                     break;
-                                }
                                 case 2: 
-                                {
                                     System.out.print("Masukkan kategori baru: ");
-                                    String newKategori = input.nextLine();
-                                    jangki[i].setKategoriProduk(newKategori);
+                                    jangki[i].setKategoriProduk(input.nextLine());
                                     System.out.println("Kategori berhasil diubah.");
                                     break;
-                                }
                                 case 3: 
-                                {
                                     System.out.print("Masukkan nama baru: ");
-                                    String newNama = input.nextLine();
-                                    jangki[i].setNamaProduk(newNama);
+                                    jangki[i].setNamaProduk(input.nextLine());
                                     System.out.println("Nama berhasil diubah.");
                                     break;
-                                }
                                 case 4: 
-                                {
                                     System.out.print("Masukkan harga baru: ");
-                                    int newHarga = input.nextInt();
-                                    jangki[i].setHargaProduk(newHarga);
+                                    jangki[i].setHargaProduk(input.nextInt());
                                     System.out.println("Harga berhasil diubah.");
                                     break;
-                                }
                                 default:
                                     System.out.println("Pilihan tidak valid.");
                             }
@@ -188,70 +178,8 @@ class Main{
                     }
                     break;
                 }
-                case 4: 
-                {
-                    // Menghapus produk
-                    Scanner input = new Scanner(System.in);
-                    System.out.print("Masukkan nama produk yang ingin dihapus: ");
-                    String nama = input.nextLine();
-            
-                    boolean ditemukan = false;
-                    i = 0;
-                    while (i < jumlahProduk && !ditemukan) 
-                    {
-                        if (jangki[i].getNamaProduk().equals(nama)) 
-                        {
-                            // Geser semua elemen setelah produk yang ditemukan
-                            j = i;
-                            while (j < jumlahProduk - 1) 
-                            {
-                                jangki[j] = jangki[j + 1];
-                                j++;
-                            }
-                            jumlahProduk--; // Kurangi jumlah produk
-                            System.out.println("Produk berhasil dihapus.");
-                            ditemukan = true;
-                        }
-                        i++;
-                    }
-            
-                    if (!ditemukan) 
-                    {
-                        System.out.println("Produk dengan nama tersebut tidak ditemukan.");
-                    }
-                    break;
-                }
-                case 5: 
-                {
-                    // Mencari produk
-                    Scanner input = new Scanner(System.in);
-                    System.out.print("Masukkan nama produk yang ingin dicari: ");
-                    String nama = input.nextLine();
-            
-                    boolean ditemukan = false;
-                    i = 0;
-                    while (i < jumlahProduk && !ditemukan) {
-
-                        if (jangki[i].getNamaProduk().equals(nama)) 
-                        {
-                            System.out.println("Produk ditemukan:");
-                            System.out.println("ID: " + jangki[i].getId());
-                            System.out.println("Kategori: " + jangki[i].getKategoriProduk());
-                            System.out.println("Nama: " + jangki[i].getNamaProduk());
-                            System.out.println("Harga: Rp" + jangki[i].getHargaProduk());
-                            ditemukan = true;
-                        }
-                        i++;
-                    }
-            
-                    if (!ditemukan) 
-                    {
-                        System.out.println("Produk tidak ditemukan.");
-                    }
-                    break;
-                }
                 case 6:
-                    // Selesai
+                    // Mengakhiri program
                     System.out.println("Terima kasih telah menggunakan program ini!");
                     break;
                 default:
